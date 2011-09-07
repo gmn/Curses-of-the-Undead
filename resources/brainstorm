@@ -1,0 +1,752 @@
+Events (going down the street)
+
+<time of day: ie. it is daytime out, there is a full moon.>
+<event message: ie. There is a zombie here >
+<Major Location: ie Chinatown>
+<minor location: Upstairs>
+<menu: Do you want to: run, fight...>
+
+EVENT MESSAGES
+--------------
+You are on a street.
+Do you want to:
+Would you like to:
+	B)reak into a nearby building?
+	Go F)orwards?
+	Turn L)eft?
+	Turn R)ight?
+	U)se an Item?
+
+There is a zombie here!
+There are N zombies here!!!
+Do you want to:
+	R)un?
+	F)ight?
+	Try to P)retend to be a zombie?
+
+You are in a building.  Would you like to:
+	- Search area?
+	- Leave?
+	- Go upstairs?
+	- Check out the basement?
+- A helicopter flies overhead.  You wonder where
+	it is going.
+- Days go by and you dont see anyone.
+- You see a helicopter on top of the TV7 News Building.	
+- There is a gorgeous mansion up the hill to the right.
+
+Events (in a building)(search, upstairs)
+-------
+- You find a zombie.  It: 
+	- ignores you. 20%
+	- Attacks you. 60%
+	- Doesn't see you. 20%
+- You find N other people.  They:
+- You find a person. They:
+	- Attack you.  
+	- Ask to join with you.
+	- Need medical attention.
+	- Run away.
+	- turn out to be a zombie(s).
+- You come across a gang of ruffians.  Do you:
+	- Try to reason with them.
+	- Run away before they see you.
+	- Attack them before they attack you.
+- You find a dead man leaning against the wall.
+	He is still gripping a (shotgun|Radio) in 
+	his hands.  There are 2 zombies feasting on
+	his extremities.
+
+Attributes
+-----------
+- Events - You find a zombie, You find N other People, 
+	You find a Military Outpost, It is raining.
+	You see a sporting goods store (%50 looted, %50 not looted)....
+
+- Player Stats - Money, Skills, Health
+- Places - Special, normal
+- Map Based / Driven
+- Settings - City, Country, Space, Ocean
+- Skills - Weapon, Acting, Radio, Medical, Maps
+- Inventory - Radio, 
+	Bottle of Good Whiskey,
+	Bottle of Whiskey,
+	Cans of Beer, 
+	Cigarettes, 
+	cell-phone (90% don't work, 10% work)
+	flare gun,
+	Can of Spray Paint,
+	Canned Food,
+	Axe,
+	Shotgun,
+	Pistol,
+	Ted Nugent Compound Bow,
+	Crowbar,
+
+Elements
+---------
+- zombies
+- Gangs of ruffians
+- scientologists
+- Marshall Law / Vigilanteism
+- Space Station
+- Steve Jackson - Sorcery
+- City Streets
+
+Base
+----
+- Melee w/ Zombie
+- Map Exploration
+- Find Stuff
+- Goals - Find Safety, 
+	- Uncontaminated Food, 
+	- Scientists, 
+	- Find other people,
+	- cure zombie disease & put things back to normal	 
+
+-----------------------------------------------------------
+MAP
+---
+It has to be implemented to be randomly generated.  There
+is just no other way.  If you generate a static, then , well
+there are other kinds of static, for instance, having static
+points, and then melee points where an N number of zombies are
+randomly generated.  
+
+Types of Places: (CITY)
+
+- Hospital
+- Department store
+- Church
+- Library
+- University
+- Museums
+- Gas Station
+- Super Market
+- Police Headquarters
+- Sporting Goods store
+- Building.
+
+how to store a map?  An array.  A map should have height & width
+parameters and an array that stores ints.  Map orientation is from
+top left.  
+
+digression:
+I think that immediate goal is to get the base game working.  after
+that it will be easier to develop new stuff, and expand it.  So I  
+had 4 types of major places, City, Country, Space, Ocean.  there are
+also inside buildings.  
+
+BUILDING
+---------
+-main floor, 
+-upstairs, 
+-basement.  
+-roof
+
+1st things to implement:
+-character stats: health, 
+-melee w/ zombies
+-inventory
+-map movement
+-character stat: skills 
+
+------------
+day 2:
+
+I spent a whole sunday on this, clear headed, and I feel that 
+now I have a working game.  I have the zombie melee, written and
+just a few splash scenes.  There is more that must be done obviously.
+I'm probably not even 40% of the way there.  no certainly I'm not.
+but to see a melee battle with 37 zombies is pretty fucking cool for
+me.  so with that working, I have to 
+
+-write the inside of buildings.
+-specialize for special buildings.
+-inside of buildings you can search for special items.
+-implement a map,  (or not).
+-implement ruffians.
+-implement item list. so that you can find stuff -
+-implement the possibility of finding special items on dead people.
+-implement finding other alive people
+-implement skills
+
+-fix up the UI in general.  It is very vague.  
+-implement breaking a window if the door is locked.
+
+----
+I'm pretty happy considering that I only spent a couple of hours
+yesterday and a whole day today.  and I have something that works.
+its missing a whole bunch of shit, but still, it works.  Now that
+I've ripped off Taipan hugely, I need to invent a few extra tricks
+of me own.  I was thinking about animating the zombies to march 
+towards the bottom of the screen.  That actually would be good for
+the effect.  This is really one of the key effects of the zombie
+movie genre, the fact that they come for you and keep on coming for
+you.  
+
+its a start anyway.  a few more spare days and I might have something.
+
+- as the equipment changes and the number in your party changes,
+so must the combat change
+- get rid of money. in a post apocalyptic world, who needs it.
+but add sums of currency to loot you can find.  just cuz a living
+man would be likely to keep money, just out of habit.
+
+---------------------------------
+ok, one real big idea.  since using ascii art seems tangible, if 
+a tad stupid, but still tangible.  writing some libraries to aid in 
+the process would be greatly appreciable.  Namely, organize it as
+such that various named ascii screens were stored in a folder, 
+such as, "graveyard", that sort of thing.  Then write some functions
+for handling them.  write a func, which opens 'graveyard', prints
+it to screen in the desired place and replaces any '\' with '\\'
+in order to use mvprintw which takes formatting arguments. If there
+is a way to avoid formatted printing, then perhaps that might be
+slicker.  mostly my reasoning is just that storing those images 
+statically inside the C code is a terrible stupid waste of time, 
+and very ugly too.  storing the images as files containing precisely
+24 rows of ascii seems a much better idea.  its nice to know that my
+programming ability as of righth now is comparable to John Carmack.
+even if its the john carmack who wrote Apple II games before he 
+eventually got his first couple good jobs.  I guess the way to meet
+likeminded programmers might be to just get employment.  so that,
+really is what I ought to be doing with a portion of my free time.
+continuously combing various online places for jobs.  and putting
+together a decent resume, presuming I can...
+
+- The title screen needs subtext.  ie, "Plague of the undead", 
+"its 2012, do you know where your weener is?"  "A game of zombie
+hunting in the modern age"  
+
+well, I cant think of a proper one right now obviously, but just 
+keep it in mind.
+
+- Add damage report to melee, "Condition: Critical (18%)"
+- Add success report to melee, ie, "You got 3 of them"
+- fix the syntax glitches in melee, such as removing surprise
+	after first encounter.  and removing the line "you regain
+	your senses" or whatever it says, if it is not needed.
+- The people could give you a variety of things.  or the people
+	could need a medic.  sometimes (33% ?) you can choose to
+	"3 people want to join with you? (y/n)"
+- You could have a "Number in your party", which would constitute
+	how many attacks you could actually have, per turn.
+- implement partial damage on monsters.
+- Weapons would then add to your ability to do damage.
+- write high-scores to file, and routine to save and display them
+- on successful surprise, you should only get one shot on one zombie,
+	for say, double damage.  not all of them.
+- fix ruffians.  Make them rarer.  make them just like people except
+that there is a possibility that they might attack you.  
+- currency is worthless, but perhaps art treasures, gem stones, and
+precious metals, and other historical artifacts might be nice.  and
+gasoline.  but in order to save and collect them you need a safe place
+to put them.  A saferoom in a safehouse.  bank vault or something?
+- Implement item list.  Two types of items. Items you use, and weapons.
+any armor is automatically added.  no muss.  Medkit, key.  crowbar to
+increase chance of forcing door.
+- if you run, you cant sneek up on them.  Surprise is blown for both.
+- if you surprise, then it you get 1st attack, it shouldn't say, you
+	"you regain your bearings"	
+- attacks of groups of zombies should be random.
+- the more zombies there are, the harder to run from them it should be.
+
+** I should strongly consider writing this in Javascript. **
+
+- implement a goodbye message for quitting early.  and write score
+- two kinds of medkits.  One kind you take right away.  another you
+	can save, hold onto, and choose to use whenever.  you only
+	find the hold onto kind in certain places.
+- ** The picture should be kept on the screen, and the 'walking...'
+message should be displayed over the top blinking while the street
+moves below.  same for running.  groups of people, hooligans, objects,
+phone booths, can be animated right onto the street scene, relatively
+easily.
+
+	I really like doing this.  of course programming sort of 
+kicks my ass, but oh well.  So, if I do like doing this, there are a
+number of things to consider for down the road thinking.  
+- Portability.  If I wrote shit for windows then the market grows
+by 100's of millions of people.
+- Better Graphics.  ??? Dont know.  I can do ascii, but that's because
+	it sucks and its easy.  I haven't the faintest idea where to
+	start with actual pixels and coloring and all of that, not to
+	mention that I strongly doubt the whole process because of 
+	time constraints.  without dealing with the art, I may be able
+	to pull it off, actually write a game.  with art, I'm fucked.
+	I'm not an artist, and once you've signed on for Art, then 
+	you need art.  Lots of it.   and it has to be good, or at 
+	least passable.
+- there might be a way, at least for terminal games, to consolidate
+both windows type games and linux type games with just portable C code.
+SDL programming could accomplish that.  
+
+things you might see.
+-----------
+- A green cloud
+- a VW Bus covered in 3 inch Cockroaches 
+- two skeletons sitting at the wheel of a volvo
+- tipped over mailboxes.
+- a garbage strewn street.
+- a traffic accident.
+- a headless zombie walking in circles
+- a jack-knifed semi
+- a building on fire
+
+- I implemented time of day.  should I implement sleep?  yeah,
+probably.
+
+-** There is a bug in the melee attack.  Something todo with num_players.
+I dont know.  I saw two zombie figures.  one laying down, one standing up,
+then it froze and obviously went into an infinite loop.  
+
+I believe I fixed the above bug btw.
+
+Ok, I'm beginning to see a direction here.  There are two ways out of 
+the city.  1, take a boat at the pier. to discover the who is sending
+the SOS, or 2, go into the Subway Station and use the turnstile ticket,
+and take the train.  oh thats right, for the above you need the boat
+keys.  
+
+also, I'm too tired now, but implement some usages for the items.  first,
+make it so that you can use food items, and replenish points.  Just
+two options, Use and Drop on the I)nventory screen.  if the item is
+food, you use it and remark about it.  "Boy that Beer sure hit the
+spot."  or "That joint got you good and stoned".  The subway could
+take you to the military base where you could take the space shuttle
+to the ISS.  but that's crazy.  or it could take you to the country.
+also, you could get to the roof of the channel 7 building and take 
+the chopper.  also, all three, could lead you to the other side of th
+lake where you find out who is sending the SOS........
+
+for instance, righth now I have 30 health and a can of peaches.  I 
+could eata the peaches real quick, give me 5 points.  That'd be nice.
+The Glenmorangie is worth 20.
+
+---
+now that I have all these great items, the question is, HOW TO MAKE 
+them do stuff.  for instance, two more guys just joined my party.  
+It would be really cool if the two guys drank all my beer.  How 
+fucking cool would that be!!!!?  Just a whole ton of random things
+could happen to you.  But I also must give the player opportunity to
+have initiate and make the right decisions that are going to help
+him.  I just got the boat keys.  I wish I had implemented the pier.
+perhaps a realtime boat on a river like spyhunter.... 
+
+well, imaginear .. I think that I must still search out the proper
+balance that bestsuits my abilities.  I mean, if I were writing 
+with words as a medium, then I could simply just write, "2 guys
+wnat to join your party.  Later that evening the 2  guys drink all
+your beer."  but that's not as fun.  Its funner if you use this
+interactive C programming medium and make something... unexpected.
+you're not sure what to expect.  You're reading it, its drawing you
+in.  but instead of me just hand-holding and writing what comes 
+next.  I have a giant array of strings.  every once in a while a 
+string is picked at random and spouted off.  I think that now is 
+the time to play some nethack.  Nethack has a _MESSAGES_ portion of
+the screen as well as a _STATS_ portion of the screen.  these are
+two things that I, as well, must have, that coupled with perserverance,
+and perhaps I'll get somewhere.  
+
+I'd also like to tackle a few more games in a few more genres before
+I'm done.  not to mention those other programming chores that I've
+forever brainstormed and forever done nothing with.  like the dbook
+command/executable that stores calender info somewhere to be retrieved
+by MOTD.  I have to write that.  too.  so perhaps its the javascript
+eventhough it is all new and hip that should be on the backburner.
+read, write,... breathhhh the code.
+
+-----------
+funny how I see things in a different light one day later.
+
+TODO:
+- I'm only using 1/2 the screen.  Use the whole thing, smartly.
+for instance, you could put a map on the right.  and just make
+h) get an entirely different screen with the various commands 
+on it.  
+-When you meet a group of people Get rid of the lines
+that tell you about zero people. if its zero, dont print it.
+-Make your gear do stuff.  you saw some examples above.  There is
+so much.  
+- cellphones: You need to check your cell-phones to see if they work.
+if not pitch em.  once you've checked your cell phone, re-label it
+"working", "no signal".  Once you have a working cell phone,
+make the player actually put the number in themselves.  
+- Just so the player has somewhere to put numbers give them
+some sort of notes screen.  A todo list that was in their back
+pocket.  Make it already partially filled out from real life.
+with like, "Get new muffler", "go Grocery shopping", that sort of
+stuff.  humorous as always.  if a player finds a new number, it 
+will automatically be written to todo list.
+- make the comestibles give you some health.  
+- implement an experience check.  after 10 zombies, you're experienced.
+you gain some abilities, and perhaps a 1d8 of hit points...  
+
+basically, this is like a cycle of mind over computer.  so many 
+things are so difficult todo until you come of the gumption mind,
+sort of like I am now, but Im tired and I know that I need to be
+German and not this.  but its wierd.  what I'm trying to point out
+is that it seems like you are only able to have so many good ideas
+in a day, then the well sort of runs dry.  now I"m playing it, and
+having a whole new sheeth of ideas, and I'm realizing that its 
+nowhere near to where it ought to be.  and I also see quite a bit
+of potential in it, and am going to give it some more energy when
+appropriate.  why?  because when you envision theses things, when 
+you really see what they are, and who they are done and you're not
+totally worn out from writing some ridiculous code already, you 
+have the gumption to start writing them.  really doing it.  its
+cyclic.  you do it.  you burn out, you sleep.  you get up, eat,
+read slashdot, and then do it again for 8 hours.  you need that
+renewall.  because that's where the gumption comes from. and when 
+you have the gumption, you are not afraid. and when you are not
+afraid you see further into the distance about where said thing
+could be.  Its all bootstrapping of one kind or another.  before
+I got to where I am, I didn't know how to get here.  I didn't 
+even know that I had the abilities to get me here, but yet I am
+here.  but now I want more.  the code that I have done looks 
+ragged and feels tired to me. I want shit to dance around the 
+screen, not be so stodgy and complacent!  So on it goes.  after I
+write a comprehensive city map, and full item functionality and 
+wandering around inside buildings, and perhaps some objectives, 
+I'll just want more.  its sure fun.
+
+| |__|  |__
+|  __ o  __ 
+| |  |  |
+
+see, that's me wandering around inside of a building.
+the other thing that's newly occurred to me is survival.  Sheer
+survival.  Wouldn't you be worried about camping gear and fresh
+water.?  Damn right you would.  what about finding out some answers?
+damn right you would.  what about shacking up in some super nice
+100 million dollar house just because you can and driveing their
+ferrari's around?  damn fucking right you would.  that's why this
+zombie genre is so appealing to me.  I could write it all day.  nay,
+it writes itself.
+
+*******got the idea I needed.  Melee will be done wizardry style.  probably
+much simpler.  before the start of a turn if you have such and 
+such item, you have the option to press U) , other wise just attack,
+also ,try to run, but just like wizardry, you wont have much of a 
+chance of succeeding at thhis, and then the monster gets a free
+attack on you,...
+
+*** also, after a big melee w/ zombies, you could get a chance proportional
+to how many of them, to finding something.  an item... 
+
+catch ^C and unallocate any mallocations.
+
+-- The ruffians could beat you up and take one of your items.  That would
+alleviate the need for me to code the melee.  with appropriate odds of
+course.
+
+LEVELS
+- at 1st level you'll gain the ability of acting around the zombies and
+ruffians and sometimes getting yourself out of sticky situations by 
+pretending to be something you're not, like acting like a zombie.
+- at 2nd level you'll have medical abilities and will be able to heal 
+some of the sick people you see and bring them with you to increase your
+numbers.
+- at 3rd level you'll gain the science skill this will allow you to
+turn zombies, either into dead or into living, or they'll disintigrate.
+either way, they're not zombies anymore.
+- I haven't figured out 4th level yet.  Flamethrower?, Ultimate Badass?
+Perhaps ruling ability.  you could put together a new colony and 
+re-populate the earth.
+
+Your guy needs a name.  Mil Stonewall.  
+
+plot pathways.  3-fold
+
+1 - can of gas, chopper on building
+2 - boat keys and pier
+3 - turnstile ticket and subway.
+
+also, the cell phone, but I haven't figured that one out yet.
+
+*** BUG, you cant enter bigger numbers than 1 digit.  Just now
+I couldn't enter 10!!!
+
+-------------
+
+ok, I have figured out what else that it really needs in order to
+make this a bonafied game.  and another thing, if I were to use SDL
+I could still start now.  I'm probably only 30-40% of the way to 
+finishing anywya, but at the same time, I've established the atmostphere,
+and I dont feel in jeopardy of my idea being so obvious or accesible
+that someone else will bilk it and beat me to the prize.  basically,
+there is NO prize at all if I dont do it in SDL.  but at least I get
+a game out of the deal.  
+
+..what the game needs..
+
+THe game needs a Map.  I didn't know before, but now I am sure of it.
+if you think of Taipan, when you play it you have the illusion that 
+you are in control of some sort.  but shit, you know that there is no
+difference which seaport that you're at.  same with Curses of the Undead.
+so, I've got my 18-30 odd places, and I implement a gridded city map,
+and randomly roll and map.  and the player can choose 4 directions to
+go in.  therefor the player receives some control over their destiny,
+this is especially true if you implement going inside of buildings.
+that way, the square with the starbucks is always there when you go to
+it.  also, implement the ability for a square to store state info about
+itself, such as...
+
+- "there are a number of zombie corpses on the ground here"
+
+that sort of thing
+
+_NEW TITLE_
+
+CURSES OF THE UNDEAD
+
+So Implement:
+- array map squares
+- random generated map each game
+- The map is made up of tiles.  There are X tiles, and a couple rules
+	like making a park with a statue in the middle, otherwise put
+	all of the regular places on the map, buildings, etcc.
+- give the map a way to store event results, such as dead zombie 
+	corpses, and dropped items.
+	also the wierd messages, like zombie poodle barking
+	at you... ?  anything that has an element of place, you could
+	bind to the place.
+- implement map movements, N,S,E,W... etc...
+- implement map boundaries.  
+	-In the west there is a lake, that is where you see the S.O.S.
+	-in the north there is a pier.  
+	-A large freeway borders the east & south
+
+- then implement insides of buildings.  
+- weapon melee
+- THe subway, tv7 build, & pier.
+- also have to implment Map view.  an overhead grid rep of map places
+	
+----
+steps for every move:
+        - do boundary checks, bounce back if
+        - if safe start the character moving, report "walking north..."
+        - determine if there is an encounter, if there is bust in
+                2 seconds into walking.
+
+	I've already got all that stuff working as of now, its just happening
+		in the wrong order.
+
+- How bout implementing a quick warning that advises that your
+terminal be at least 80x24?  its an easy func.  you just getem and 
+check em.  that will aid people who have macs with the wrong terminal
+size as default, so that they wont complain that the game looks
+funny.
+
+- the leveling up func is slightly broke.  I believe the code is 
+close, but it doesnt level up to to 3 or 4 or 5.  the first level
+has worked every time, but the others dont follow...
+
+- *** Make sure you do a Mac installer no matter whether its curses
+or SDL in the final cut
+
+------
+- I definitely ran into some sticky C crazy scoping shit tonight.
+I learned that there is a difference between calling something a
+int array[]    vs.  calling it a
+int *array.  
+
+I guess the difference would be making the memory available to
+another piece of code.  I'm working with two, 3 or more files.  
+one of the files has the array in it, imported from a .h header.
+the other file is code that needs access to this array.  so I 
+included it via `extern'.  I had to rework things several times 
+but finally got it to work.  So I do have a generate map func
+finally that aliases what it is generating.  next I need a 
+
+- display func, 
+- boundary checking, 
+- more arrays that store various information, which can be acessed 
+co-incidentally to the given map array, all of which aliased, 
+- a way in main in which to keep track of which square your on.  
+- you also need a func that finds squares 
+
+because the first square that you are going to be on is the 
+"Freeway Entrance".  how do you find it?  place equals the index
+of the city_map square with "Freeway Entrance" on it.  this is hard,
+because if your aren't in the city, then place is going to equal
+the index of ANOTHER array.   I guess that takes place in another
+func, which just asks which mode your in and acts accordingly.
+
+so this is easy, you call a func and put all the logic inside of
+it which first asks, which MODE are you in?  To start you are in 
+
+int get_square(MODE_CITY, "Freeway Entrance");
+
+you also need north,south,east,west functions which are similar. 
+in fact, you wont ask for MODE in above because that is changed elsewhere
+and is global.  
+
+M_NONE, M_NORTH, M_SOUTH, M_WEST, M_EAST
+
+int get_square(M_NONE, "Freeway Entrance");
+
+-------------
+
+I changed the levels. 1st levelup now gains you camping ability,
+which if you have the proper gear, you can camp, and gain health
+back.  so I believe that i just have to put a routing in the
+show_inventory to check for camping gear and print a different
+message.  and gain a couple points. 
+
+
+
+
+/* here is what I need
+- an array of seen the exact size of the map, 
+initialized to all 0, Except for the Freeway Entrance.
+- an algorithm in display map which determines 
+	1 - what edges may be visible
+	2 - what visible places have been seen
+	3 - pick the right map-sub
+	4 - display the exposed places
+
+- when you move in a certain direction, 
+	1 - erase the char 'o' w/ ' '
+	2 - fill in new 'o' towards the direction walking
+
+- when you see z ombies, p eople, r uffians or d ead bodies, 
+	fill in their letter on the street ahead of you.
+
+- unidentified buildings show up as ?
+- Identified buildings show up as their first letter capitalized:
+	B Bank
+	P Pier
+	F Freeway overpass
+	S Subway
+	etc...
+
+- it also needs a snap_back() function that updates the map orientation,
+one character width/height at a time.  This is fairly complicated to
+write about but here goes, 
+-you move the guy, 
+	he moves in the direction and the message displays "walking north..."
+- You either:
+	- Have an encounter in which case the screen may be erased
+or	- snap_back() occurs. the map crawls back into place around the
+		character icon, then the whole thing slides towards 
+		centering.  then the next turn begins
+
+*/
+
+I got a floating point exception while dealing with deadpeople when 
+I was above level 3.  I had almost 150 kills. so I was in badass mode,
+and just as I was waiting for it to cough up my mandatory sick that I 
+am supposed to bring with me, it died and said "floating point exception".
+
+YOU MUST FIND THAT BUG AND KILL IT
+
+the thing that i need to dois to write a interface to SDL that allows
+you to write DOS games.  Yes, I said it, but emulation of the past
+is essential here.  BRIDGE the past.  link the 80's w/ teh 2000's.
+we've lost this ability to have 8-bit, 16-bit color art games, done
+in dos style.  the thing is that if I could do a 3rd person, 3d, view
+of the main character, _very_ _similar_ to zelda, the link ones,
+ "occarina of time", that I haven't plaed but make them Un-cartoony,
+ and more "Flashback" like.  meaning believeable, and artically 
+ indicative. 
+
+ -------------------------------------------
+much later.  if I go on to attempt to complete the zombie game, which I
+should, in its current encarnation, what do I need.  Less choice.  I
+need maps that are challenging, limiting, but doable.  I need to implement
+weapons in the melee, which means re-implementing melee, in a larger
+and more organized fashion.   so that there is some sort of turn based
+menu, basically copy wizardry lock-stock.  what else, well you just need
+more.  what about the buildings?  You need storable maps.  so that you 
+can load them.  the map thing really needs to be written so that it
+functions in all situations.  I have a feeling that the way that it is
+in the code right now is a big huge joke.  a static array declared right
+on the spot.  so what's stopping me?  its still a ton of work.  why?
+well, I practically did it all wrong the first time.  according to
+parabel and lesson, that's about par for the course.  a good idea , is
+just that, an idea.  if you can do it, then it becomes the reality that
+you know some things to be.  well, I've never done that.  but it must
+begin, somehow.  if its games, you start simple, do a 2D game.  nothing
+too difficult.  think of adventure.  adventure's main asset is that there
+just wasnt anything else at the time.  this day and age, what do you 
+have, lots of big budget 3D games , but little or no imagination.  This
+is the key.  NO IMAGINATION!!!!  Which is exactly what i want to do, a 
+game which tells alot of story, in the choose your own adventure vein.
+I like that, and I can definitely do it.
+
+hmmmmmmm, well, there is definitely something stopping me from working
+on the zombie mk2 game, which is that I am still lacking information on
+how to texture map a game.  where to get the textures, how to make them,
+and how to lay them out.  Its a big chunk of information.  bigger than
+I am able to fully deal with or else i would have started writing it 
+already.  SDl does make things nicer.  hmmmmmmm.  So I need to learn how
+to make a texture.  I can barely even envision a street scene.  THere
+would be brick buildings, pavement, sidewalks with cracks, garbage cans,
+news papers in the breeze and garbage.  that is why I dont do a game.
+I dont know where that stuff even comes from.  its a freeking mystery to
+me.  bahhhhhh
+
+question: should I , err, is it worth it to complete the game in curses???
+I could.  
+
+Ok, I'm convinced that I just gave up on a good idea.  Its not implemented
+in the right way.  well there are lots of angles, and through this, I need
+to learn what the right ways are.  unfortunately by doing the wrong way
+first some of the times.  so its needs some writing and some re-writing.
+the map thing needs to be completely re-thoughtout from the top down.
+so that I can use it for buildings.  and subway and sewer.  and boating.
+also, 
+
+well, there are further concerns.  what if I get a decent game together?
+it'll be frozen into a mac and Linux universe on console.  You could
+write an installer which puts a link on the destop which spawns a console.
+VERY GOOD IDEA, but that's only if I get the game working
+
+you cant put a statue in a park without giving it some meaning.  Dumbass.
+it is very rare, but if you do the exact right thing around the statue
+something will happen.  basically games like this happen on a work/
+reward basis.  its almost become a textbook concept with WoW.   but you
+have to have to give things, little bits of creativity, but keep them
+tied up in a riddle, which the player must unravel.  if you can do that,
+then you have a winner.
+
+BUG!!!  On the inventory page there is a huge bug.  You can push keys
+of things that you dont even have and it will report them.
+
+--
+here is me reading this many months later.  its mid-January07 now.  I'm
+noticing lots of little fixes while playing zombie:
+
+ - the player should have an occasional super shot in battle where he 
+hits for a ton of points and just wipes out his foe.  For battle to be
+fun you have to win big sometimes.  and alot if you can figure out how.
+ - when you run across a group of people and find something, that pause
+needs to be longer.  
+- inventory needs a "back" key or an "exit" key.
+- Take my real phone number out of the todo list.
+- you should do a quick stab animation in frames of ascii.  like even 3
+frames, one holding the sword, big muscle, ripped dirty dress shirt.
+one plunging into a creatures chest, 3rd is the creature exploding and 
+the 4th is the exploded stuff spattering outwards going everywhere.
+- The channel 7 tv building and the subway and the boat should have
+separate scenes that you can enter in to., maybe the park too, something
+good at the park like "the bum in the park gives you this ability, or
+gives you this item.  and you can go to the bum 3 times, but after the 3
+times if you go again, the bum gets mad and spouts off at you.  
+
+"Listen man, I dont know if you noticed, but I got some shit going on 
+here myself.
+I'm trying to keep these mofo's from over-running the park.  I need me 
+some sanctuary, you know what I'm sayin.  Come back and check me later." 
+
+A random chance and he will say:
+"unless.. you wouldn't mind killing these devils over here would yah?  
+I would do it but they're big. ?"
+[Y/N]> _
+if so, it'll roll 4 or 5 zombies and if you kill them he'll give you 
+a fourth item, something extra.
+
+
+

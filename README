@@ -1,0 +1,40 @@
+
+Welcome the README for Curses of the Undead, a game of post-apocalyptic
+zombie hunting written in ncurses.  
+
+Current Status - 
+
+9/27/2005 - the map is working, sortof, items are partially working, 
+the level system is mostly implemented.  There are a number of messages
+for various items that are still blank and tons of features that have
+yet to be written. 
+
+Disclaimer
+
+Software is also freespeach.  There may be a few things that a few
+of you don't like about this program.  In particular, there is one
+political remark that precisely 50% of you are not going to like.
+Oh well, please don't say I didn't warn ya.  Its all meant in good fun.
+
+There are several abilities in the game that will allow you to do several
+things.  
+
+o Camping - allows you to camp once a day and regain some energy.
+            Things needed to camp: camping ability and a camping item.
+            A down coat will work.
+
+o Acting  - allows you to use cunning to hustle the rednecks and 
+            ruffians.  Also allows you to pretend to be a zombie to 
+            avert the attacks of groups of zombies.
+
+o Medical - allows you to heal 1-n sick people you find in groups of
+            people along with the able bodied that may or may not wish
+            to join you.  The healed will join your group automatically
+            out of gratitude.
+
+o Science - Science is the last ability available.  The ultimate goal
+            of the game is to find a cure to the virus that causes the
+            zombie plague.  The science skill is necessary in order to
+            win the game.  The science skill will also allow you to throw
+            some antidote on a group of zombies and "turn" some of them,
+            either back to being healed or back into being dead.
